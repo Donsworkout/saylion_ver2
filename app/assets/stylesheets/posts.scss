@@ -1,0 +1,42 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.banner1{
+    background: asset_url('bannerimg.jpg');
+}
+#banner1{
+    height:260px;
+    background-size: cover;
+    background-repeat: none;
+    background-position: center;
+    min-height: 100%;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom:40px;
+}
+.banner1_text{
+    margin-top:70px;
+    color:white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+.bt1{
+    margin-bottom:0px;
+    font-size:20px;
+}
+.bt2{
+    margin-top:10px;
+    margin-bottom:15px;
+    font-size:28px;
+    letter-spacing:0.07em;
+}
+.btnban{
+    letter-spacing:0.09em;
+    font-weight:300;
+}
+.cardtext{
+    font-size:16px;
+}
+.chipcss{
+    margin-top:15px;
+}

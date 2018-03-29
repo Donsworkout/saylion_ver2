@@ -1,0 +1,40 @@
+<div class="banner1" id="banner1">
+    <div class="banner1_text center">
+        <p class="bt1">오늘도 심심한 도현이에게</p>
+        <p class="bt2">새 안부 묻기</p>
+    </div>
+</div> 
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col s0 m2"></div>
+    <div class="card col s12 m8">
+      <div class="card-content">
+        <div class="card-title">예쁜말 고운말만 써주세요 :)</div>
+        <br><br>
+        <%= form_tag posts_path, multipart: true do %>
+          <div class="row">
+              <div class="input-field col s12 m4">
+                <%= text_field_tag :name, nil, class: "materialize-textarea", id: "name", placeholder: "ex : 미소천사" %>
+                <label for="name">당신을 표현해줄 닉네임</label>
+              </div>
+              <div class="col s0 m8">
+              </div>
+          </div>
+          <div class="row">
+              <div class="input-field col s12">
+                <%= text_area_tag :name, nil, class: "materialize-textarea", id: "content", placeholder: "ex : 어 오늘 너 완전 멋졌어" %>
+                <label for="content">안부를 곱게(?) 전해봐요</label>
+              </div>
+          </div>
+          <div class="input-field">
+              <div class="center-btn">
+            <%= button_tag "작성하기", class: "btn red lighten-2" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col s0 m2"></div>
+  </div>
+</div>

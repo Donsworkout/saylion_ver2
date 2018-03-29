@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>심심한 도현이</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta property="og:title" content="심심한 도현이에게">
+  <meta property="og:description" content="오늘 엄청 심심한 도현이에게 한마디를 남겨주세용">
+  <meta property="og:image" content="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/27751725_2011020965805726_5648526944942105525_n.png?oh=dc764964f940f18bf1a18bb53cd01301&oe=5B1DFF0C">
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper  red lighten-3">
+      <div class="container">
+        <a href="/" class="brand-logo"><%= image_tag("simsim_7.png", :class => "navlogoimg responsive-img") %></a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/" class="nav-link">안부 묻기</a></li>
+          <li><a href="/posts/new" class="nav-link">새 안부 쓰기</a></li>
+          <li><a href="/intros/index" class="nav-link">나?</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li><a href="/" class="nav-link">안부 묻기</a></li>
+          <li><a href="/posts/new" class="nav-link">새 안부 쓰기</a></li>
+          <li><a href="/intros/index" class="nav-link">나?</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+    <%= yield %>
+    
+</body>
+</html>
+
+<script>
+  $(document).ready(function() {
+    $(".button-collapse").sideNav();
+});
+</script>

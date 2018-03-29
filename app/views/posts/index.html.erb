@@ -1,0 +1,38 @@
+<div class="banner1" id="banner1">
+    <div class="banner1_text center">
+        <p class="bt1">오늘도 심심한 도현이에게</p>
+        <p class="bt2">안부를 물어주세요!</p>
+    </div>
+    <div class="banner1_btn center">
+        <a href="/posts/new" class="waves-effect waves-light btn red lighten-3 center btnban">안부묻기</a>
+    </div>
+</div> 
+
+<div class="container">
+    <div class="row">
+        <div class="col s0 m2">
+    
+        </div>
+        <div class="col s12 m8">
+            <% if @posts %>
+                <% @posts.each do |post| %>
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">안녕, 난 <%=post.name%>!😏</span>
+                            <p class="cardtext"><%= simple_format(post.content) %></p>
+                            <div class="chip chipcss">
+                                <%=post.created_at.strftime("%Y년 %m월 %d일 %H시쯤")%>
+                                <i class="close material-icons">close</i>
+                            </div>  
+                        </div>
+                        <div class="card-action">
+                            <%= link_to '삭제할래요?',post_path(post), method: "delete",:data => {:confirm => '본인것만..삭제해주세요 :) 제발!'} %>
+                        </div>
+                    </div>
+                <% end %>
+            <% end %>
+        <div class="col s0 m2">
+    
+        </div>
+    </div>
+</div>
