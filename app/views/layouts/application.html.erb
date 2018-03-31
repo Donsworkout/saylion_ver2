@@ -31,7 +31,11 @@
           <li><a href="/" class="nav-link">안부 타임라인</a></li>
           <li><a href="/posts/new" class="nav-link">새 안부 쓰기</a></li>
           <li><a href="/intros/index" class="nav-link">나?</a></li>
-          <li><a href="/users/sign_in" class="nav-link">관리자</a></li>
+          <% if !user_signed_in? %>
+            <li><a href="/users/sign_in" class="nav-link">로그인</a></li>     
+          <% else %>
+            <li><%= link_to '로그아웃', destroy_user_session_path, class: ""%></li>           
+          <% end %>
         </ul>
       </div>
     </div>
