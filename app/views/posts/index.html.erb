@@ -16,23 +16,48 @@
         <div class="col s12 m8">
             <% if @posts %>
                 <% @posts.each do |post| %>
-                    <div class="card">
+                    <div class="card" style="margin-bottom:40px;">
                         <div class="card-content">
                             <span class="card-title">안녕, 난 <%=post.name%>!😏</span>
+                            <br>
                             <p class="cardtext"><%= simple_format(post.content) %></p>
+                            <br>
                             <div class="chip chipcss">
                                 <%=post.created_at.strftime("%Y년 %m월 %d일 %H시쯤")%>
                                 <i class="close material-icons">close</i>
                             </div>  
                         </div>
                         <div class="card-action">
-                            <%= link_to '삭제할래요?',post_path(post), method: "delete",:data => {:confirm => '본인것만..삭제해주세요 :) 제발!'} %>
+                            <a class="waves-effect waves-light btn-small modal-trigger" href="#modal1">삭제하기</a>
                         </div>
                     </div>
+                    
+                      <div id="modal1" class="modal">
+                        <div class="modal-content">
+                          <h5>정녕 지우십니까? ㅠㅠ</h5>
+                          <br>
+                          <%= form_tag post_path(post), method: "delete" do %>
+                              <%= password_field_tag :password, nil, class: "form-control tarea", placeholder: "비밀번호", required: true %>  
+                        </div>
+                        <div class="modal-footer">
+                              <%= button_tag "삭..제", class: "waves-effect waves-light btn orange"%>
+                          <% end %>
+                          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">취소</a>
+                        </div>
+                      </div>
+                      
                 <% end %>
             <% end %>
         <div class="col s0 m2">
     
         </div>
     </div>
+    
 </div>
+
+
+<script>
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>

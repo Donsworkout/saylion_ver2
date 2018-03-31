@@ -1,0 +1,51 @@
+
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col s0 m3"></div>
+    <div class="col s12 m6">
+        <br>
+            <h5 class="center">회원 등록</h5>
+            <br>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
+             <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :name, "이름 ( ex : 주인장 )" %>
+                <%= f.text_field :name, autofocus: true%>
+              </div>
+              </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :email,"이메일 (본인 멋사 계정)" %>
+                <%= f.email_field :email,:class =>'active' %>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :password,"비밀번호(최소 6자)" %><br>
+                <%= f.password_field :password, autocomplete: "off" %>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.label :password_confirmation,"비밀번호 확인" %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "off" %>
+              </div>
+            </div>
+            
+            <div class="actions">
+              <div class="center">
+                <%= f.submit "가입하기",class: "btn small red lighten-3" %>
+              </div>
+            </div>
+            <br><br>
+          <% end %>
+      </div>
+   <div class="col s0 m3"></div>   
+</div>
+</div>
+
