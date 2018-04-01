@@ -29,10 +29,10 @@ before_action :check_ownership, only: [:destroy]
   def check_ownership
       @post = Post.find_by(id: params[:id])
       @password = params[:password]
-      if current_user==nil 
-          redirect_to posts_path if @post.password != @password
-      else      
-         redirect_to posts_path if current_user.email!="donsdev@insomenia.com"
+      if (current_user==nil) && (@post.password != @password)
+          redirect_to posts_path
+      elsif (current_user!=nil) && (current_user.email!="donsdev@insomenia.com") 
+         redirect_to posts_path
       end     
   end   
 end

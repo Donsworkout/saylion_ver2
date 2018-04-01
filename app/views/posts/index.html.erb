@@ -17,34 +17,66 @@
             <% if @posts %>
                 <% @posts.each do |post| %>
                     <div class="card" style="margin-bottom:40px;">
+                        <a class="modal-trigger right" href="#modal<%=post.id%>">
+                            <i class="material-icons mycon">close</i>
+                        </a>
                         <div class="card-content">
-                            <span class="card-title">안녕, 난 <%=post.name%>!😏</span>
-                            <br>
+                            <p class="card-title">안녕, 난 <%=post.name%>!😏</p>
+                            <span class="new badge left red accent-1" style="margin-left:0px;" data-badge-caption="<%=post.created_at.strftime("%Y년 %m월 %d일 %H시쯤")%>"></span>
+                            <br><br>
                             <p class="cardtext"><%= simple_format(post.content) %></p>
                             <br>
-                            <div class="chip chipcss">
-                                <%=post.created_at.strftime("%Y년 %m월 %d일 %H시쯤")%>
-                                <i class="close material-icons">close</i>
-                            </div>  
+                                        <br>
+                                        <% if post.comments.present? %>
+                                            <ul class="collection">
+                                                <% post.comments.each do |comment| %>
+                                                    <li class="collection-item" style="margin-top:20px;">
+                                                        <% if user_signed_in? && comment.user.id == current_user.id %>
+                                                            <%= link_to post_comment_path(post, comment), method: "delete", class: "right",:data => {:confirm => '정말 삭제하실 건가요?'} do %>
+                                                                <i class="material-icons mycon">close</i>                                                          
+                                                            <% end %>
+                                                        <% end %> 
+                                                        <p class="comuser">반가워, 난 <%= comment.user.name %>😀</p>
+                                                        <br>
+                                                        <p class="comcont"><%= comment.content %></p>
+                                                        <br>
+                                                    </li>
+                                                <% end %>
+                                            </ul>
+                                        <% end %> 
                         </div>
-                        <div class="card-action">
-                            <a class="waves-effect waves-light btn-small modal-trigger" href="#modal<%=post.id%>">삭제하기</a>
-                        </div>
+                        <% if user_signed_in? && current_user.email == "donsdev@insomenia.com"%>
+                            <ul class="collapsible">
+                                <li>
+                                    <div class="collapsible-header"><i class="material-icons">comment</i>답장하기</div>
+                                    <div class="collapsible-body">
+                                        <%= form_tag post_comments_path(post) do %>
+                                            <div class="input-field smaller">
+                                                <%= text_area_tag :content, nil, class: "materialize-textarea", placeholder: "답장을 남겨주세요", required: true %>
+                                            </div>
+                                            <div class="input-field center">
+                                                <%= button_tag "답장 쓰기", class: "btn small red lighten-3" %>
+                                            </div>
+                                        <% end %>     
+                                    </div>
+                                </li>
+                            </ul>
+                        <% end %>
                     </div>
                     
-                      <div id="modal<%=post.id%>" class="modal">
-                        <div class="modal-content">
-                          <h5>정녕 지우십니까? ㅠㅠ</h5>
-                          <br>
-                          <%= form_tag post_path(post), method: "delete" do %>
-                              <%= password_field_tag :password, nil, class: "form-control tarea", placeholder: "비밀번호", required: true %>  
-                        </div>
-                        <div class="modal-footer">
-                              <%= button_tag "삭..제", class: "waves-effect waves-light btn orange"%>
+                    <div id="modal<%=post.id%>" class="modal">
+                        <%= form_tag post_path(post), method: "delete" do %>
+                            <div class="modal-content">
+                                <h5>정녕 지우십니까? ㅠㅠ</h5>
+                                <br>
+                                <%= password_field_tag :password, nil ,class: "form-control tarea", placeholder: "비밀번호" %>  
+                            </div>
+                            <div class="modal-footer">
+                                <%= button_tag "삭..제", class: "waves-effect waves-light btn orange"%>
+                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">취소</a>
+                            </div>
                           <% end %>
-                          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">취소</a>
-                        </div>
-                      </div>
+                    </div>
                       
                 <% end %>
             <% end %>

@@ -7,8 +7,8 @@
 <div class="container">
   <br>
   <div class="row">
-    <div class="col s0 m2"></div>
-    <div class="card col s12 m8">
+    <div class="col s0 m2 l3"></div>
+    <div class="card col s12 m8 l6">
       <div class="card-content">
         <br><br>
         <div class="card-title center">예쁜말 고운말만 써주세요 :)</div>
@@ -20,7 +20,7 @@
                 <label for="name">당신을 표현해줄 닉네임</label>
               </div>
               <div class="input-field col s12 m6">
-                <%= password_field_tag :password, nil, class: "materialize-textarea", id: "name"%>
+                <%= password_field_tag :password, nil, class: "materialize-textarea", id: "name", required: true %>
                 <label for="name">비밀번호 (4자리 이상)</label>
               </div>
           </div>
@@ -40,6 +40,6 @@
         <% end %>
       </div>
     </div>
-    <div class="col s0 m2"></div>
+    <div class="col s0 m2 l3"></div>
   </div>
 </div>
